@@ -56,9 +56,7 @@ class NN(object):
 
     def relu(self, x, grad=False):
         if grad:
-            # WRITE CODE HERE
             return (x > 0) * 1
-        # WRITE CODE HERE
         else:
           return (x > 0) * x
         return 0
@@ -66,9 +64,7 @@ class NN(object):
     def sigmoid(self, x, grad=False):
         f = 1 / (1 + np.exp(-x))
         if grad:
-            # WRITE CODE HERE
             return f * (1 - f)
-        # WRITE CODE HERE
         else:
           return f
         return 0
@@ -76,9 +72,7 @@ class NN(object):
     def tanh(self, x, grad=False):
         t=(np.exp(x)-np.exp(-x))/(np.exp(x)+np.exp(-x))
         if grad:
-            # WRITE CODE HERE
             return 1-t**2
-        # WRITE CODE HERE
         else:
           return t
         return 0
@@ -86,25 +80,19 @@ class NN(object):
     def leakyrelu(self, x, grad=False):
         alpha = 0.01
         if grad:
-            # WRITE CODE HERE
             return np.where(x > 0, 1, alpha)
-        # WRITE CODE HERE
         else:
           return np.where(x > 0, x, x * alpha)
         return 0
 
     def activation(self, x, grad=False):
         if self.activation_str == "relu":
-            # WRITE CODE HERE
             return self.relu(x, grad)
         elif self.activation_str == "sigmoid":
-            # WRITE CODE HERE
             return self.sigmoid(x, grad)
         elif self.activation_str == "tanh":
-            # WRITE CODE HERE
             return self.tanh(x, grad)
         elif self.activation_str == "leakyrelu":
-            # WRITE CODE HERE
             return self.leakyrelu(x, grad)
         else:
             raise Exception("invalid")
@@ -150,7 +138,6 @@ class NN(object):
             self.weights[f"b{layer}"] -= self.lr * grads[f"db{layer}"] 
 
     def one_hot(self, y):
-        # WRITE CODE HERE
         one_y = np.zeros((y.size, y.max()+1))
         one_y[np.arange(y.size),y] = 1
         return one_y.astype(int)
@@ -207,7 +194,6 @@ class NN(object):
         return test_loss, test_accuracy
 
     def normalize(self):
-        # WRITE CODE HERE
         # compute mean and std along the first axis
         mu = np.mean(self.train[0], axis=0)
         std = np.std(self.train[0], axis=0)
